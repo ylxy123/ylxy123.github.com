@@ -49,11 +49,11 @@
       
         <tags>
             
-            <tag> ubuntu </tag>
-            
             <tag> ssh </tag>
             
             <tag> 免密登录 </tag>
+            
+            <tag> ubuntu </tag>
             
         </tags>
       
@@ -78,9 +78,9 @@
       
         <tags>
             
-            <tag> 虚拟机 </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> 虚拟机 </tag>
             
             <tag> nat </tag>
             
@@ -107,13 +107,13 @@
       
         <tags>
             
+            <tag> ubuntu </tag>
+            
             <tag> linux </tag>
             
             <tag> 虚拟机 </tag>
             
             <tag> VMware </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> server </tag>
             
