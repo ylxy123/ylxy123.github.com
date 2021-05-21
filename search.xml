@@ -4,6 +4,66 @@
   
     
     <entry>
+      <title>jupyter—notebook添加虚拟环境</title>
+      <link href="2021/05/21/jupyter%E2%80%94notebook%E6%B7%BB%E5%8A%A0%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
+      <url>2021/05/21/jupyter%E2%80%94notebook%E6%B7%BB%E5%8A%A0%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
+      
+        <content type="html"><![CDATA[<p>当我们在conda中创建新的虚拟环境后，别忘了将新建的虚拟环境添加进<code>Jupyter notebook</code>内核，否则每次启动<code>Jupyter notebook</code>都会进入默认的base环境下导致新安装的包无法使用。具体操作步骤如下：（本文新建的虚拟环境以<code>py37</code>为例）</p><h1 id="进入新建的虚拟环境"><a href="#进入新建的虚拟环境" class="headerlink" title="进入新建的虚拟环境"></a>进入新建的虚拟环境</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate py37</span><br></pre></td></tr></table></figure><h1 id="安装nb-conda"><a href="#安装nb-conda" class="headerlink" title="安装nb_conda"></a>安装<code>nb_conda</code></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install nb_conda</span><br></pre></td></tr></table></figure><h1 id="安装ipykernel"><a href="#安装ipykernel" class="headerlink" title="安装ipykernel"></a>安装<code>ipykernel</code></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -n py37 ipykernel</span><br></pre></td></tr></table></figure><h1 id="将虚拟环境写入Jupyter-notebook"><a href="#将虚拟环境写入Jupyter-notebook" class="headerlink" title="将虚拟环境写入Jupyter notebook"></a>将虚拟环境写入<code>Jupyter notebook</code></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m ipykernel install --user --name py37 --display-name &quot;显示名称&quot;</span><br></pre></td></tr></table></figure><blockquote><p>此处注意<code>--display-name</code>后接的是在<code>jupyter notebook</code>中显示的虚拟环境名称（可以自定义），不要忘记双引号。</p></blockquote><p>执行完之后，就能在<code>jupyter notebook</code>中看到新建的虚拟环境了：）</p><p><img src="/image-20210521195611688-1621598179180.png" alt="jupyter notebook conda环境"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 配置环境 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> jupyter-notebook </tag>
+            
+            <tag> 虚拟环境 </tag>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>优化算法（一）拉格朗日乘子法</title>
+      <link href="2021/05/06/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95/"/>
+      <url>2021/05/06/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<p>　　在我们的实际生活中，优化问题通常包括三类：<code>无约束优化问题</code>，<code>等式约束优化问题</code>以及<code>不等式约束优化问题</code>。其中无约束问题求解最为简单，直接求导验证即可。而带有约束条件的问题则比较棘手，往往不能通过简单的消元法求解。这时，我们可以通过构造$Lagrange$函数，将约束问题的目标函数和约束条件加以结合。此时，问题简化为无约束问题，我们就能通过求解$Lagrange$函数的优化问题来得到原约束问题的近似解。</p><h1 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h1><ol><li><strong>构造对应的$Lagrange$函数</strong></li><li><strong>求解变量的偏导方程</strong></li><li><strong>将结果代入目标函数</strong></li></ol><p>下面我们对<strong>等式约束问题</strong>和<strong>不等式约束问题</strong>分别进行讨论。</p><h1 id="等式约束问题的乘子法"><a href="#等式约束问题的乘子法" class="headerlink" title="等式约束问题的乘子法"></a>等式约束问题的乘子法</h1><p>考虑如下等式约束问题：<br>$$<br>\min f(x),\ \ \\\text{s.t. }h_i(x)=0, \ \ (i\in E={1,\cdots,m_1})<br>$$</p><p>定义如下函数$\tilde{L}_\mu{(x)}$</p><p>$$<br>\tilde{L}_\mu(x)=L(x,\lambda^*)+\frac{1}{2}\mu S(x)<br>$$<br>其中，<br>$$<br>L(x, \lambda)=f(x)-\sum_{i \in E} \lambda_{i} h_{i}(x)<br>$$<br>称为$Lagrange$函数，<br>$$<br>S(x)=\left|h_{E}(x)\right|^{2}=\sum_{i \in E} h_{i}(x)^{2}<br>$$<br>称为约束破坏度函数。</p><h2 id="数值算法流程：等式约束问题的乘子法"><a href="#数值算法流程：等式约束问题的乘子法" class="headerlink" title="数值算法流程：等式约束问题的乘子法"></a><strong><code>数值算法流程</code>：等式约束问题的乘子法</strong></h2><ol start="0"><li><p>取初始点$x^{(0)}\in R^n$，$初始乘子\lambda_i^{(0)}\in,(i\in E)$。给定参数序列${\mu_k}$，算法精度$\varepsilon&gt;0$。令$k:=0$。</p></li><li><p>构造增广$Lagrange$函数：<br>$$<br>L_{\mu_{k}}\left(x, \lambda^{(k)}\right)=L\left(x, \lambda^{(k)}\right)+\frac{1}{2} \mu_{k} S(x)<br>$$<br>其中，<br>$$<br>L\left(x, \lambda^{(k)}\right)=f(x)-\sum_{i \in E} \lambda_{i}^{(k)} h_{i}(x), \quad S(x)=\left|h_{E}(x)\right|^{2}=\sum_{i \in E} h_{i}^{2}(x)<br>$$</p></li><li><p>以$ x^{(k-1)} $作为初始点，$(k=0$时，初始点任意$)$，求解无约束问题：<br>$$<br>\min L_{\mu_{k}}\left(x, \lambda^{(k)}\right), \quad\left(x \in \mathrm{R}^{n}\right)<br>$$<br>得解$x^{(k)}$。</p></li><li><p>若<br>$$<br>\left|h_{E}\left(x^{(k)}\right)\right|=S\left(x^{(k)}\right)^{1 / 2} \leqslant \varepsilon<br>$$<br>得解$x^{(k)}$。</p></li><li><p>乘子迭代：<br>$$<br>\lambda_{i}^{(k+1)}=\lambda_{i}^{(k)}-\mu_{k} h_{i}\left(x^{(k)}\right), \quad(i \in E)<br>$$<br>令$k:=k+1$。转<strong>1</strong>。</p></li></ol><h2 id="【例1】"><a href="#【例1】" class="headerlink" title="【例1】"></a>【例1】</h2><p>设有如下等式约束问题：<br>$$<br>\begin{array}{l}<br>\min f(x)=x_{1}^{2}-3 x_{2}-x_{2}^{2} \\<br>\text { s.t. } h(x)=x_{2}=0<br>\end{array}<br>$$<br>取$\lambda_0 = -1$，$\mu_k=6$。该问题最优解为$x^{*}=(0,0)^\text{T}$，相应的$Lagrange$乘子为$\lambda^{*}=-3$。</p><p>　　<strong>解</strong>　　该问题的增广$Lagrange$函数为：<br>$$<br>L_{\mu}(x, \lambda)=x_{1}^{2}-3 x_{2}-x_{2}^{2}-\lambda x_{2}+\frac{1}{2} \mu x_{2}^{2}<br>$$<br>其无约束问题$\min L_{\mu_{k}}\left(x, \lambda_{k}\right)$的解为：<br>$$<br>x^{(k)}=\left(0, \frac{3+\lambda_{k}}{\mu_{k}-2}\right)^{\mathrm{T}}=\left(0, \frac{3+\lambda_{k}}{4}\right)^{\mathrm{T}}<br>$$<br>乘子迭代格式为：<br>$$<br>\begin{aligned}<br>\lambda_{k+1} &amp;=\lambda_{k}-\mu_{k} x_{2}^{(k)}=-\frac{9}{2}-\frac{1}{2} \lambda_{k} \\<br>&amp;=-\frac{9}{2}\left[1-\frac{1}{2}+\frac{1}{2^{2}}-\cdots+(-1)^{k} \frac{1}{2^{k}}\right]+(-1)^{k} \frac{1}{2^{k+1}} \lambda_{0} \\<br>&amp;=-3\left[1-(-1)^{k+1} \frac{1}{2^{k+1}}\right]+(-1)^{k+1} \frac{1}{2^{k+1}} \\<br>&amp;=-3+(-1)^{k+1} \frac{1}{2^{k}} \rightarrow-3=\lambda^{*}<br>\end{aligned}<br>$$<br>从而解得：<br>$$<br>x^{(k)}=\left(0,(-1)^{k} \frac{1}{2^{k+1}}\right)^{\mathrm{T}} \rightarrow(0,0)^{\mathrm{T}}=x^{*}<br>$$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 优化算法 </category>
+          
+          <category> 公式法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 最优化 </tag>
+            
+            <tag> 条件极值 </tag>
+            
+            <tag> 拉格朗日乘子法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ubuntu18-04虚拟机搭建HTCondor集群（四）运行测试程序</title>
       <link href="2021/05/02/ubuntu18-04%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BAHTCondor%E9%9B%86%E7%BE%A4%EF%BC%88%E5%9B%9B%EF%BC%89%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/"/>
       <url>2021/05/02/ubuntu18-04%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BAHTCondor%E9%9B%86%E7%BE%A4%EF%BC%88%E5%9B%9B%EF%BC%89%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/</url>
