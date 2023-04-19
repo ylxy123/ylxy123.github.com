@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>机器学习笔记（一）基础知识 | Welcome to Ylxy's Blog</title><meta name="author" content="Yao Linxiangyu"><meta name="copyright" content="Yao Linxiangyu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="什么是机器学习？  机器学习致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。 在计算机系统中，“经验”通常以数据的形式存在。因此机器学习研究的主要内容是关于在计算机上从数据中产生“模型”的算法，即学习算法(learning algorithm)。有了学习算法，我们将经验数据提供给它，它就能基于这些数据产生“模型”。模型能给我们提供相应的判断。 可以说机器学习是研究关于“学习算法”的学问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记（一）基础知识">
+<meta property="og:url" content="https://ylxy123.github.io/2021/03/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Welcome to Ylxy&#39;s Blog">
+<meta property="og:description" content="什么是机器学习？  机器学习致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。 在计算机系统中，“经验”通常以数据的形式存在。因此机器学习研究的主要内容是关于在计算机上从数据中产生“模型”的算法，即学习算法(learning algorithm)。有了学习算法，我们将经验数据提供给它，它就能基于这些数据产生“模型”。模型能给我们提供相应的判断。 可以说机器学习是研究关于“学习算法”的学问">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ylxy123.github.io/img/8.jpg">
+<meta property="article:published_time" content="2021-03-22T05:18:38.000Z">
+<meta property="article:modified_time" content="2021-05-05T00:42:31.162Z">
+<meta property="article:author" content="Yao Linxiangyu">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ylxy123.github.io/img/8.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ylxy123.github.io/2021/03/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '机器学习笔记（一）基础知识',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-05 08:42:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/logo_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/8.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Welcome to Ylxy's Blog"><span class="site-name">Welcome to Ylxy's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">机器学习笔记（一）基础知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-22T05:18:38.000Z" title="发表于 2021-03-22 13:18:38">2021-03-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-05T00:42:31.162Z" title="更新于 2021-05-05 08:42:31">2021-05-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">机器学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="机器学习笔记（一）基础知识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="什么是机器学习？"><code>什么是机器学习？</code></h1>
+<ul>
+<li>机器学习致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。</li>
+<li>在计算机系统中，“经验”通常以数据的形式存在。因此机器学习研究的主要内容是关于在计算机上从数据中产生“模型”的算法，即<code>学习算法(learning algorithm)</code>。有了学习算法，我们将经验数据提供给它，它就能基于这些数据产生“模型”。模型能给我们提供相应的判断。</li>
+<li>可以说机器学习是研究关于“学习算法”的学问。</li>
+</ul>
+<blockquote>
+<p>Mitchell给出了一个更加形式化的定义：假设用$P$来评估计算机程序在某任务类$T$上的性能。若一个程序通过利用经验$E$在$T$中任务上获得了<code>性能改善</code>，则我们说关于$T$和$P$，该程序对$E$进行了学习。</p>
+</blockquote>
+<h1 id="模型and模式？"><code>模型and模式？</code></h1>
+<ul>
+<li>“模型”泛指从数据中学得的结果。有文献用“模型”指全局性结果（例如一棵决策树），而用“模式”指局部结果（如一条规则）。</li>
+</ul>
+<h1 id="基本术语"><code>基本术语</code></h1>
+<ul>
+<li>
+<p><code>数据集(data set)</code></p>
+<p>一组关于对象的记录的集合称为一个<code>数据集</code>，其中记录表示一个事件或一个对象的描述，称为<code>示例(instance)</code>或<code>样本(sample)</code>。反映事件或对象在某方面的表现或性质的事项称为<code>特征(feature)</code>或<code>属性(attribute)</code>，其中的取值称为<code>属性值(attribute value)</code>。属性扩张成的空间称为<code>样本空间</code>或<code>输入空间</code>。若以特征为坐标轴，则$n$个特征即张成一个$n$维空间，其中每个样本均可在其中找到一个坐标与之对应，此时一个样本也可称为一个<code>特征向量(feature vector)</code>。</p>
+<blockquote>
+<p>有时一个样本可代表整个数据集。因为它可看作是对样本空间做的一个采样。</p>
+</blockquote>
+</li>
+<li>
+<p><code>学习过程</code></p>
+<p>从数据集中学到模型的过程称为<code>学习</code>或<code>训练过程</code>。这一过程所用到的数据集称为<code>训练集</code>，其中的样本称为<code>训练样本</code>。学习得到的模型对应于数据中存在的某种潜在规律。这种潜在规律称为<code>真相(ground-truth)</code>。学习的过程就是为了找出或无限逼近真相。所以模型有时被称为<code>学习器</code>。可以看作学习算法在给定数据和参数空间上的实例。</p>
+<blockquote>
+<p>学习算法通常有参数设置，不同的参数设置和不同的训练集将产生不同的结果。</p>
+</blockquote>
+</li>
+<li>
+<p><code>标记(label)</code></p>
+<p>为了建立关于<code>预测(prediction)</code>的模型，除了示例数据，我们还需获取样本的结果信息。这样的结果信息称为<code>标记(label)</code>；而拥有标记的示例，称为<code>样例(example)</code>。我们可以用$(\pmb{x}_i,y_i)$来表示第$i$个样例。其中$\pmb{x}_i$表示示例，$y_i$表示其对应的标记。所有标记$y_i$构成的集合称<code>标记空间(label space)</code>或<code>输出空间</code>。</p>
+</li>
+<li>
+<p><code>分类（classification）</code>or<code>回归(regression)</code></p>
+<p>若我们将要预测的值是离散的，则称此类学习任务为<code>分类</code>；若预测的值连续，则称<code>回归</code>。而根据类别个数，分类任务又分为<code>二分类(binary classification)</code>和<code>多分类(multi-class classification)</code>。在二分类任务中，通常一个称为<code>正类(positive class)</code>，一个称为<code>负类(negative class)</code>。通常预测任务的主要内容是通过对训练集的学习来建立一个从输入空间$\mathcal{X}$到输出空间$\mathcal{Y}$的映射。对二分类任务，通常令$\mathcal{Y}={-1,+1}$或${0,1}$；对多分类任务，$|\mathcal{Y}|&gt;2$；对回归任务，$\mathcal{Y}=\mathbb{R}$。</p>
+</li>
+<li>
+<p><code>测试(testing)</code></p>
+<p>在学到模型之后，还应对其进行性能评估。这一过程称为<code>测试</code>。待预测的样本称为<code>测试样本(testing sample)</code>。</p>
+</li>
+<li>
+<p><code>聚类(clustering)</code></p>
+<p>将训练集中的样本划分为若干组，每一组称为一个<code>簇(cluster)</code>。这些自动形成的簇可能对应一些潜在的概念划分。应用此学习过程可以帮助我们挖掘一些数据内在的规律。而这种学习过程不要求训练集拥有标记信息，否则标记信息可能会直接影响簇划分的结果。</p>
+</li>
+<li>
+<p><code>监督学习(supervised learning)</code>和<code>无监督学习(unsupervised learning)</code></p>
+<p>根据训练集是否拥有标记信息，我们可将学习任务划分为两大类：<code>监督学习</code>和<code>无监督学习</code>。上文提及的分类和回归是前者的代表，而聚类则是后者的代表。</p>
+</li>
+<li>
+<p><code>泛化(generalization)</code></p>
+<p>我们应该明白这一点，机器学习的目标应该是使模型能更好地适用于新样本而非训练数据。因此我们应该加强学得模型的适应能力，即<code>泛化</code>能力。</p>
+<blockquote>
+<p>我们通常假设样本服从一个未知分布且相互独立，即<code>独立同分布(i.i.d.)</code>。一般而言，训练样本越多，样本空间越大，则我们能得到的信息越多，越有可能通过学习得到泛化能力强的模型。</p>
+</blockquote>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://ylxy123.github.io">Yao Linxiangyu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ylxy123.github.io/2021/03/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">https://ylxy123.github.io/2021/03/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ylxy123.github.io" target="_blank">Welcome to Ylxy's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></div><div class="post_share"><div class="social-share" data-image="/img/8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/" title="机器学习笔记（二）模型评估与选择"><img class="cover" src="/img/9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">机器学习笔记（二）模型评估与选择</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/20/hello-world/" title="Hello World"><img class="cover" src="/img/hello_world.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/" title="机器学习笔记（二）模型评估与选择"><img class="cover" src="/img/9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-24</div><div class="title">机器学习笔记（二）模型评估与选择</div></div></a></div><div><a href="/2021/09/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/" title="机器学习笔记（三）回归模型"><img class="cover" src="/img/huigui.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-05</div><div class="title">机器学习笔记（三）回归模型</div></div></a></div><div><a href="/2021/10/31/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88%E4%B8%80%EF%BC%89%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" title="图神经网络（一）预备知识"><img class="cover" src="/img/tulun.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-31</div><div class="title">图神经网络（一）预备知识</div></div></a></div><div><a href="/2021/09/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/" title="机器学习笔记（四）极大似然估计"><img class="cover" src="/img/mle.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-08</div><div class="title">机器学习笔记（四）极大似然估计</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/logo_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Yao Linxiangyu</div><div class="author-info__description">自信人生二百年，会当水击三千里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1205695200@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是机器学习？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8Band%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">模型and模式？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-number">3.</span> <span class="toc-text">基本术语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/18/CUDA%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BA%86%E8%A7%A3GPU%E6%9E%B6%E6%9E%84/" title="CUDA编程（一）了解GPU架构"><img src="/img/111.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CUDA编程（一）了解GPU架构"/></a><div class="content"><a class="title" href="/2023/04/18/CUDA%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BA%86%E8%A7%A3GPU%E6%9E%B6%E6%9E%84/" title="CUDA编程（一）了解GPU架构">CUDA编程（一）了解GPU架构</a><time datetime="2023-04-18T04:23:43.000Z" title="发表于 2023-04-18 12:23:43">2023-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/18/%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E5%8F%8A%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" title="三维重建（一）基础理论及相机标定">三维重建（一）基础理论及相机标定</a><time datetime="2022-03-18T05:54:38.000Z" title="发表于 2022-03-18 13:54:38">2022-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/31/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88%E4%B8%80%EF%BC%89%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" title="图神经网络（一）预备知识"><img src="/img/tulun.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图神经网络（一）预备知识"/></a><div class="content"><a class="title" href="/2021/10/31/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88%E4%B8%80%EF%BC%89%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" title="图神经网络（一）预备知识">图神经网络（一）预备知识</a><time datetime="2021-10-31T02:17:01.000Z" title="发表于 2021-10-31 10:17:01">2021-10-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/" title="机器学习笔记（四）极大似然估计"><img src="/img/mle.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习笔记（四）极大似然估计"/></a><div class="content"><a class="title" href="/2021/09/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1/" title="机器学习笔记（四）极大似然估计">机器学习笔记（四）极大似然估计</a><time datetime="2021-09-08T02:51:05.000Z" title="发表于 2021-09-08 10:51:05">2021-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/" title="机器学习笔记（三）回归模型"><img src="/img/huigui.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习笔记（三）回归模型"/></a><div class="content"><a class="title" href="/2021/09/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/" title="机器学习笔记（三）回归模型">机器学习笔记（三）回归模型</a><time datetime="2021-09-05T05:22:13.000Z" title="发表于 2021-09-05 13:22:13">2021-09-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2019/09/09/5oDRkWVKctx2b6A.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Yao Linxiangyu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://test-ylxy123.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://test-ylxy123.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
